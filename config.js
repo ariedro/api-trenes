@@ -9,4 +9,5 @@ export default {
     { in: /u/g, out: ['#7', '#0'] },
     { in: /=/g, out: ['#g', '#v'] },
   ],
+  cacheFileName: 'token.dat',
 };

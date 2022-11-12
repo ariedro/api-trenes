@@ -1,14 +1,14 @@
 import fetch from 'node-fetch';
 import config from './config.js';
 import generateCredentials from './auth.js';
+import cache from './cache.js';
 import logger from './logger.js';
 
 const UNAUTH = 'Unauthorized';
 
 class Api {
   constructor() {
-    // TODO: Add file save/restore
-    this.token = '';
+    this.token = cache.load();
   }
 
   async generateToken() {
@@ -18,6 +18,7 @@ class Api {
       path: config.auth,
     });
     this.token = token;
+    cache.save(token);
     logger.log(`Generated new token: ${token}`);
   }
 
