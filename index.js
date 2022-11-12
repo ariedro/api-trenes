@@ -1,15 +1,16 @@
 import express from 'express';
 import Api from './api.js';
+import logger from './logger.js';
 
 const app = express();
 const api = new Api();
 
-app.get('*', (req, res) =>
+app.get('*', logger.req, (req, res) =>
   api
     .request(req)
     .then(apiRes => res.send(apiRes))
     .catch(err => {
-      console.error(err);
+      logger.err(err);
       res.status(500).send(err.message);
     })
 );

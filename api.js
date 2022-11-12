@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import config from './config.js';
 import generateCredentials from './auth.js';
+import logger from './logger.js';
 
 const UNAUTH = 'Unauthorized';
 
@@ -17,6 +18,7 @@ class Api {
       path: config.auth,
     });
     this.token = token;
+    logger.log(`Generated new token: ${token}`);
   }
 
   async request(params) {
@@ -35,7 +37,6 @@ class Api {
   }
 
   async internalRequest({ method = 'GET', body, path, query = {} }) {
-    console.log('[api.internalRequest]', { method, body, path, query });
     const options = {
       method,
       headers: { 'Content-Type': 'application/json' },
