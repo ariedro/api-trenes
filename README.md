@@ -13,6 +13,35 @@ I'll link a blogpost about this process sometime in the future.
 
 - [ariedro.dev](https://ariedro.dev/api-trenes)
 
+## Usage example
+
+The result of these queries can be piped to something like `jq` for better formatting
+
+Get all lines
+
+```sh
+curl 'https://ariedro.dev/api-trenes/lineas'
+```
+
+Get stations of line 5
+
+```sh
+curl 'https://ariedro.dev/api-trenes/estaciones/buscar?lineas=5'
+```
+
+Get the train schedules to go from "Drago" to "Miguelete"
+
+```sh
+curl 'https://ariedro.dev/api-trenes/estaciones/236/horarios?hasta=271'
+```
+
+Get the train schedules to go from "Drago" to "Miguelete", filtering only the arrival time
+
+```sh
+curl 'https://ariedro.dev/api-trenes/estaciones/236/horarios?hasta=271&fields=results%28desde%28llegada'
+```
+
+
 ## Install
 
 Just install and start
