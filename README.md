@@ -41,16 +41,6 @@ Get the train schedules to go from "Drago" to "Miguelete", filtering only the ar
 curl 'https://ariedro.dev/api-trenes/estaciones/236/horarios?hasta=271&fields=results%28desde%28llegada'
 ```
 
-
-## Install
-
-Just install and start
-
-```sh
-$ npm install
-$ npm run start
-```
-
 ## Endpoints
 
 These are some of the endpoints that I've scrapped from the app,
@@ -162,3 +152,12 @@ No parameters
 | Name | Located in | Type    |
 | ---- | ---------- | ------- |
 | `id` | path       | integer |
+
+## Install
+
+Just install and start
+
+```sh
+$ npm install
+$ npm run start
+```
