@@ -7,7 +7,8 @@ All the endpoints and params are the same of the original service,
 this is just a proxy that makes the authentication process available for public usage.
 
 This was possible by scrapping the code inside the SOFSE Trains Android app,
-I'll link a blogpost about this process sometime in the future.
+
+[Here's a blog post] describing what was the process behind this.
 
 ## Public instances
 
