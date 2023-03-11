@@ -8,7 +8,7 @@ this is just a proxy that makes the authentication process available for public 
 
 This was possible by scrapping the code inside the SOFSE Trains Android app,
 
-[Here's a blog post] describing what was the process behind this.
+[Here's a blog post](https://ariedro.dev/3-hack-trains-api/) describing what was the process behind this.
 
 ## Public instances
 
