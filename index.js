@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import Api from './api.js';
 import logger from './logger.js';
 
@@ -6,6 +7,7 @@ const app = express();
 const api = new Api();
 
 app.set('trust proxy', true);
+app.use(cors())
 
 app.get('*', logger.req, (req, res) =>
   api
