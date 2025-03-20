@@ -5,6 +5,8 @@ import logger from './logger.js';
 const app = express();
 const api = new Api();
 
+app.set('trust proxy', true);
+
 app.get('*', logger.req, (req, res) =>
   api
     .request(req)
@@ -15,4 +17,4 @@ app.get('*', logger.req, (req, res) =>
     })
 );
 
-app.listen(3000);
+app.listen(3056);
