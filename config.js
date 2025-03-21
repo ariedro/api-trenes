@@ -1,5 +1,5 @@
 export default {
-  url: 'https://apiarribos.sofse.gob.ar/v1',
+  url: 'https://api-servicios.sofse.gob.ar/v1',
   auth: '/auth/authorize',
   cipher: [
     { in: /a/g, out: ['#t', '#t'] },
