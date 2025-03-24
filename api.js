@@ -27,11 +27,13 @@ class Api {
       if (this.isTokenExpired()) {
         throw new Error(UNAUTH);
       }
-      return this.internalRequest(params);
+      const res = await this.internalRequest(params);
+      return res;
     } catch (err) {
       if (err.message === UNAUTH) {
         await this.generateToken();
-        return this.internalRequest(params);
+        const res = await this.internalRequest(params);
+        return res;
       }
       throw err;
     }
@@ -52,7 +54,7 @@ class Api {
 
     const res = await fetch(url, options);
     if (!res.ok) {
-      throw new Error(res.status === 401 ? UNAUTH : res.statusText);
+      throw new Error(res.status === 403 ? UNAUTH : res.statusText);
     }
     const resJson = await res.json();
     return resJson;
