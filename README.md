@@ -18,28 +18,22 @@ This was possible by scrapping the code inside the SOFSE Trains Android app,
 
 The result of these queries can be piped to something like `jq` for better formatting
 
-Get all lines
+Get stations that start with "Migue"
 
 ```sh
-curl 'https://ariedro.dev/api-trenes/lineas'
+curl 'https://ariedro.dev/api-trenes/infraestructura/estaciones?nombre=Migue'
 ```
 
-Get stations of line 5
+Get all info from station Miguelete (Warning: Heavy payload)
 
 ```sh
-curl 'https://ariedro.dev/api-trenes/estaciones/buscar?lineas=5'
+curl 'https://ariedro.dev/api-trenes/arribos/estacion/271'
 ```
 
-Get the train schedules to go from "Drago" to "Miguelete"
+Get 3 train schedules to go from "Miguelete" to "Drago" today at 08:32
 
 ```sh
-curl 'https://ariedro.dev/api-trenes/estaciones/236/horarios?hasta=271'
-```
-
-Get the train schedules to go from "Drago" to "Miguelete", filtering only the arrival time
-
-```sh
-curl 'https://ariedro.dev/api-trenes/estaciones/236/horarios?hasta=271&fields=results%28desde%28llegada'
+curl 'https://ariedro.dev/api-trenes/arribos/estacion/271?hasta=236&fecha=2025-03-25&hora=08:32&cantidad=3'
 ```
 
 ## Endpoints
@@ -48,111 +42,38 @@ These are some of the endpoints that I've scrapped from the app,
 I don't know which of the parameters are required and how it works exactly,
 I'll probably complete more this documentation once I get to test it better.
 
-### GET `/estaciones/{id}`
+### GET `/arribos/estacion/{id}`
 
-#### Parameters
+| Name           | Located in | Type    | Required | Example    |
+| -------------- | ---------- | ------- | -------- | ---------- |
+| `id`           | path       | number  | Yes      | 271        |
+| `hasta`        | query      | number  | No       | 236        |
+| `fecha`        | query      | string  | No       | 2025-03-25 |
+| `hora`         | query      | string  | No       | 08:32      |
+| `cantidad`     | query      | number  | No       | 3          |
+| `paraApp `     | query      | boolean | No       | true       |
+| `ramal`        | query      | number  | No       | 9          |
+| `sentido`      | query      | number  | No       | 1          |
+| `tipoBusqueda` | query      | string  | No       | llegada    |
 
-| Name | Located in | Type    |
-| ---- | ---------- | ------- |
-| `id` | path       | integer |
+### GET `/infraestructura/gerencias`
 
-### GET `/estaciones/{id}/horarios`
+| Name        | Located in | Type   | Required | Example |
+| ----------- | ---------- | ------ | -------- | ------- |
+| `idEmpresa` | query      | number | Yes      | 1       |
 
-#### Parameters
+### GET `/infraestructura/ramales`
 
-| Name            | Located in | Type      |
-| --------------- | ---------- | --------- |
-| `id`            | path       | integer   |
-| `hasta`         | query      | integer   |
-| `fields`        | query      | string    |
-| `lineas`        | query      | integer[] |
-| `ramales`       | query      | integer[] |
-| `cabeceraFinal` | query      | integer[] |
-| `servicio`      | query      | integer   |
-| `fecha`         | query      | string    |
-| `tipo`          | query      | string    |
-| `limit`         | query      | integer   |
+| Name         | Located in | Type   | Required | Example |
+| ------------ | ---------- | ------ | -------- | ------- |
+| `idGerencia` | query      | number | Yes      | 11      |
 
-### GET `/estaciones/{id}/horarios/groups`
+### GET `/infraestructura/estaciones`
 
-#### Parameters
-
-| Name     | Located in | Type      |
-| -------- | ---------- | --------- |
-| `id`     | path       | integer   |
-| `fields` | query      | string    |
-| `lineas` | query      | integer[] |
-
-### GET `/estaciones/cercanas`
-
-#### Parameters
-
-| Name      | Located in | Type      |
-| --------- | ---------- | --------- |
-| `lat`     | query      | double    |
-| `lon`     | query      | double    |
-| `radio`   | query      | integer   |
-| `limit`   | query      | integer   |
-| `lineas`  | query      | integer[] |
-| `ramales` | query      | integer[] |
-| `exclude` | query      | integer[] |
-| `orderBy` | query      | string    |
-| `fields`  | query      | string    |
-
-### GET `/estaciones/buscar`
-
-#### Parameters
-
-| Name      | Located in | Type      |
-| --------- | ---------- | --------- |
-| `nombre`  | query      | string    |
-| `ids`     | query      | integer[] |
-| `lineas`  | query      | integer[] |
-| `ramales` | query      | integer[] |
-| `exclude` | query      | integer[] |
-| `limit`   | query      | integer   |
-| `orderBy` | query      | string    |
-
-### GET `/lineas`
-
-#### Parameters
-
-| Name     | Located in | Type      |
-| -------- | ---------- | --------- |
-| `ids`    | query      | integer[] |
-| `lineas` | query      | integer[] |
-| `limit`  | query      | integer   |
-| `fields` | query      | string    |
-
-### GET `/alertas`
-
-No parameters
-
-### GET `/alertas/viaje`
-
-#### Parameters
-
-| Name    | Located in | Type    |
-| ------- | ---------- | ------- |
-| `desde` | query      | integer |
-| `hasta` | query      | integer |
-
-### GET `/estaciones/{id}/alertas/geo`
-
-#### Parameters
-
-| Name    | Located in | Type    |
-| ------- | ---------- | ------- |
-| `id`    | path       | integer |
-| `token` | query      | string  |
-
-### GET `/lineas/{id}/alertas`
-
-#### Parameters
-
-| Name | Located in | Type    |
-| ---- | ---------- | ------- |
-| `id` | path       | integer |
+| Name      | Located in | Type   | Required | Example |
+| --------- | ---------- | ------ | -------- | ------- |
+| `nombre`  | query      | string | No       | Migue   |
+| `idRamal` | query      | number | No       | 9       |
 
 ## Install
 
