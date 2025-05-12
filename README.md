@@ -36,44 +36,9 @@ Get 3 train schedules to go from "Miguelete" to "Drago" today at 08:32
 curl 'https://ariedro.dev/api-trenes/arribos/estacion/271?hasta=236&fecha=2025-03-25&hora=08:32&cantidad=3'
 ```
 
-## Endpoints
+## Documentation
 
-These are some of the endpoints that I've scrapped from the app,
-I don't know which of the parameters are required and how it works exactly,
-I'll probably complete more this documentation once I get to test it better.
-
-### GET `/arribos/estacion/{id}`
-
-| Name           | Located in | Type    | Required | Example    |
-| -------------- | ---------- | ------- | -------- | ---------- |
-| `id`           | path       | number  | Yes      | 271        |
-| `hasta`        | query      | number  | No       | 236        |
-| `fecha`        | query      | string  | No       | 2025-03-25 |
-| `hora`         | query      | string  | No       | 08:32      |
-| `cantidad`     | query      | number  | No       | 3          |
-| `paraApp `     | query      | boolean | No       | true       |
-| `ramal`        | query      | number  | No       | 9          |
-| `sentido`      | query      | number  | No       | 1          |
-| `tipoBusqueda` | query      | string  | No       | llegada    |
-
-### GET `/infraestructura/gerencias`
-
-| Name        | Located in | Type   | Required | Example |
-| ----------- | ---------- | ------ | -------- | ------- |
-| `idEmpresa` | query      | number | Yes      | 1       |
-
-### GET `/infraestructura/ramales`
-
-| Name         | Located in | Type   | Required | Example |
-| ------------ | ---------- | ------ | -------- | ------- |
-| `idGerencia` | query      | number | Yes      | 11      |
-
-### GET `/infraestructura/estaciones`
-
-| Name      | Located in | Type   | Required | Example |
-| --------- | ---------- | ------ | -------- | ------- |
-| `nombre`  | query      | string | No       | Migue   |
-| `idRamal` | query      | number | No       | 9       |
+[Here](https://trenes.sofse.apidocs.ar/)  you can find a detailed documentation for the endpoints. Thanks to [Enzo Notario](https://github.com/enzonotario).
 
 ## Install
 
